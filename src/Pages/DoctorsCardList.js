@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
+import Rate from "rc-rate";
 import { Link } from "react-router-dom";
 import Navbar from "../Components/NavBar/NavBar";
-import Rate from "rc-rate";
 
 const DoctorsCardList = () => {
   const [Doctors, setDoctors] = useState([]);
@@ -14,7 +14,7 @@ const DoctorsCardList = () => {
         setDoctors(DoctorsInfo);
       });
   }, []);
-
+  if (!Doctors) return <h1> loading </h1>;
   return (
     <div className=" bg-[#df7539]">
       <div className="bg-[#30353b]  pb-5">
@@ -25,7 +25,9 @@ const DoctorsCardList = () => {
           return (
             <div className="w-56 flex flex-col items-center h-96 p-6 m-2 mr-3 rounded-lg bg-[#30353b]">
               <Link to={`/doctor/${doctor.id}`}>
-                <div className="absolute">{<Rate value={doctor.rate} />}</div>
+                <div className="absolute ">
+                  {<Rate value={doctor.Rating} />}
+                </div>
                 <img
                   alt="img"
                   className="rounded-full	mb-3"
